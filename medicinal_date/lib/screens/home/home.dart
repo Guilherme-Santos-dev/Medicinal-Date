@@ -12,6 +12,7 @@ class Home extends StatelessWidget {
         },
         child: const Icon(
           Icons.add,
+          color: Colors.white,
         ),
       ),
       appBar: AppBar(

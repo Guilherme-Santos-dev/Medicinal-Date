@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class addMedicine extends StatefulWidget {
   const addMedicine({Key? key}) : super(key: key);
@@ -8,13 +11,12 @@ class addMedicine extends StatefulWidget {
 }
 
 class _addContactState extends State<addMedicine> {
-  final _isObscure = true;
   final _formKey = GlobalKey<FormState>();
 
   final nomeController = TextEditingController();
   final obsController = TextEditingController();
   final quantidadeController = TextEditingController();
-  final horarioController = TextEditingController();
+  final horarioController = MaskedTextController(mask: "00:00");
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,12 @@ class _addContactState extends State<addMedicine> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            print("TA OK ");
+            print("Nova agenda registrada");
           }
         },
         child: const Icon(
           Icons.save,
+          color: Colors.white,
         ),
       ),
       body: Container(
@@ -47,6 +50,9 @@ class _addContactState extends State<addMedicine> {
               ),
               TextFormField(
                 controller: nomeController,
+                validator: (text) => (text == null || text.length <= 3)
+                ? "Nome de medicamento muito pequeno."
+                : null,
                 keyboardType: TextInputType.name,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -58,6 +64,9 @@ class _addContactState extends State<addMedicine> {
               ),
               TextFormField(
                 controller: obsController,
+                validator: (text) => (text == null || text.length == 0)
+                ? "Adicione uma obscervação"
+                : null,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -68,6 +77,9 @@ class _addContactState extends State<addMedicine> {
                 height: 15,
               ),
               TextFormField(
+                validator: (text) => (text == null || text.length <= 0)
+                ? "adicione pelo menos 1 unidade"
+                : null,
                 controller: quantidadeController,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
@@ -80,6 +92,9 @@ class _addContactState extends State<addMedicine> {
               ),
               TextFormField(
                 controller: horarioController,
+                validator: (text) => (text == null || text.length != 5)
+                ? "Horario invalido"
+                : null,
                 keyboardType: TextInputType.datetime,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
