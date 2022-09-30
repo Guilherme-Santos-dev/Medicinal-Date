@@ -50,7 +50,7 @@ class _addContactState extends State<addMedicine> {
               ),
               TextFormField(
                 controller: nomeController,
-                validator: (text) => (text == null || text.length > 3)
+                validator: (text) => (text == null || text.length < 4)
                 ? "Nome de medicamento muito pequeno."
                 : null,
                 keyboardType: TextInputType.name,
@@ -64,7 +64,7 @@ class _addContactState extends State<addMedicine> {
               ),
               TextFormField(
                 controller: obsController,
-                validator: (text) => (text == null || text.length == 0)
+                validator: (text) => (text == null || text.length == 0 )
                 ? "Adicione uma obscervação"
                 : null,
                 keyboardType: TextInputType.text,
@@ -77,7 +77,7 @@ class _addContactState extends State<addMedicine> {
                 height: 15,
               ),
               TextFormField(
-                validator: (text) => (text == null || text.length == 0)
+                validator: (text) => (text == null || text.length < 1)
                 ? "adicione pelo menos 1 unidade"
                 : null,
                 controller: quantidadeController,
