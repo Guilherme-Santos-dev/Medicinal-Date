@@ -1,3 +1,4 @@
+import 'dart:convert';
 class Medicine{
   String nome;
   String obscervacao;
