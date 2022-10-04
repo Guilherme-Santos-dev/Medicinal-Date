@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
       ),
       
       body: FutureBuilder(
-        future: MedicineRepository.findAll(),
+        future: MedicineRepository.findALL(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.none ||
               snapshot.connectionState == ConnectionState.waiting) {
@@ -51,7 +51,7 @@ class Home extends StatelessWidget {
             );
           } else {
             return const Center(
-              child: Text("Não existem contatos cadastrados!!!"),
+              child: Text("Não existem agendas"),
              );
           }
         },
