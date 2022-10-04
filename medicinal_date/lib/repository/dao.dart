@@ -12,7 +12,7 @@ class DAO {
       version: 1,
       onCreate: (db, _) async {
         const sql =
-            "CREATE TABLE contacts(id INTEGER PRIMARY KEY AUTOINCREMENT,nome TEXT, observacao TEXT, quantidade INTEGER, horario TEXT)";
+            "CREATE TABLE contacts(id INTEGER PRIMARY KEY AUTOINCREMENT,nome TEXT, observacao TEXT, quantidade TEXT, horario TEXT)";
         await db.execute(sql);
       },
     );

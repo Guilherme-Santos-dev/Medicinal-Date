@@ -1,14 +1,14 @@
 import 'dart:convert';
 class Medicine{
   String nome;
-  String obscervacao;
+  String observacao;
   String quantidade;
   String horario;
   
 
   Medicine({
     required this.nome,
-    required this.obscervacao,
+    required this.observacao,
     required this.quantidade,
     required this.horario,
   });
@@ -16,7 +16,7 @@ class Medicine{
   Map<String, dynamic> toMap(){
   return <String, dynamic>{
     'nome': nome,
-    'obscervacao': obscervacao,
+    'obscervacao': observacao,
     'quantidade': quantidade,
     'horario': horario,
 
@@ -26,7 +26,7 @@ class Medicine{
   factory Medicine.fromMap(Map<String, dynamic> map){
     return Medicine(
       nome: map['nome'],
-      obscervacao: map['observacao'],
+      observacao: map['observacao'],
       quantidade:  map['quantidade'],
       horario: map['horario'],
       );

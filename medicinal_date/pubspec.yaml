@@ -36,6 +36,17 @@ dependencies:
   cupertino_icons: ^1.0.2
   sqflite: ^2.0.3+1
   flutter_masked_text2: ^0.9.1
+  flutter_launcher_icons: ^0.10.0
+
+
+flutter_icons:
+  image_path: "assets/app_icon.png"
+  ios: true
+  remove_alpha_ios: true
+  android: "launcher_icon"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/app_icon.png"
+
 
 dev_dependencies:
   flutter_test:

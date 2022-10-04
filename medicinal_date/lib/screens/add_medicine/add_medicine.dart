@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:medicinal_date/model/Medicine.dart';
+import 'package:medicinal_date/repository/medicine_repository.dart';
 
 class addMedicine extends StatefulWidget {
   const addMedicine({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class _addContactState extends State<addMedicine> {
   final _formKey = GlobalKey<FormState>();
 
   final nomeController = TextEditingController();
-  final obsController = TextEditingController();
+  final observacaoController = TextEditingController();
   final quantidadeController = TextEditingController();
   final horarioController = MaskedTextController(mask: "00:00");
 
@@ -22,12 +24,27 @@ class _addContactState extends State<addMedicine> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Novo Remédio"),
+        title: const Text("Nova agenda"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState!.validate()) {
-            print("Nova agenda registrada");
+            final medicine = Medicine(
+              nome: nomeController.text,
+              observacao: observacaoController.text,
+              quantidade: quantidadeController.text,
+              horario: horarioController.text,             
+            );
+            final result = await MedicineRepository.insertMedicine(medicine);
+            String message;
+            if (result != 0) {
+              message = "Agenda criada";
+            } else {
+              message = "Não foi possivel criar a agenda";
+            }
+            final snack = SnackBar(content: Text(message));
+            ScaffoldMessenger.of(context).showSnackBar(snack);
+
           }
         },
         child: const Icon(
@@ -63,7 +80,7 @@ class _addContactState extends State<addMedicine> {
                 height: 15,
               ),
               TextFormField(
-                controller: obsController,
+                controller: observacaoController,
                 validator: (text) => (text == null || text.length == 0 )
                 ? "Adicione uma obscervação"
                 : null,
