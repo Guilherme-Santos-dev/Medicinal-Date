@@ -16,12 +16,10 @@ class ItemList extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
-          children: [
-            CircleAvatar(backgroundColor: Colors.lightGreen,
-            child: Icon(
+          children: [       
+            Icon(
               Icons.access_time_outlined
-            ),
-            ),
+            ),        
             SizedBox(
               width: 16,
             ),
