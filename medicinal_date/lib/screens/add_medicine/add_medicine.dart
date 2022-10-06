@@ -35,7 +35,7 @@ class _addContactState extends State<addMedicine> {
               quantidade: quantidadeController.text,
               horario: horarioController.text,             
             );
-            final result = await MedicineRepository.insertMedicine(medicine);
+            final result = await MedicineRepository.insertMedicine(medicine.toMap());
             String message;
             if (result != 0) {
               message = "Agenda criada";

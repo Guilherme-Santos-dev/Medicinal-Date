@@ -16,7 +16,7 @@ class Medicine{
   Map<String, dynamic> toMap(){
   return <String, dynamic>{
     'nome': nome,
-    'obscervacao': observacao,
+    'observacao': observacao,
     'quantidade': quantidade,
     'horario': horario,
 
