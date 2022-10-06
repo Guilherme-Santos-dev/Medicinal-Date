@@ -1,4 +1,4 @@
-  import 'package:medicinal_date/screens/add_medicine/add_medicine.dart';
+import 'package:medicinal_date/screens/add_medicine/add_medicine.dart';
 import 'package:medicinal_date/screens/home/home.dart';
 import 'package:flutter/material.dart';
 
@@ -20,4 +20,13 @@ void main() {
       ),
     ),
   );
+  body: new Stack(
+      children: <Widget>[
+        new Container(
+          decoration: new BoxDecoration(
+            image: new DecorationImage(image: new AssetImage("assets/foto background"), fit: BoxFit.cover,),
+          ),
+        ),
+      ],
+    );
 }
