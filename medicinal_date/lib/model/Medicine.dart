@@ -1,5 +1,6 @@
 import 'dart:convert';
 class Medicine{
+  int? id;
   String nome;
   String observacao;
   String quantidade;
@@ -7,6 +8,7 @@ class Medicine{
   
 
   Medicine({
+    this.id,
     required this.nome,
     required this.observacao,
     required this.quantidade,
@@ -15,6 +17,7 @@ class Medicine{
 
   Map<String, dynamic> toMap(){
   return <String, dynamic>{
+    'id': id,
     'nome': nome,
     'observacao': observacao,
     'quantidade': quantidade,
@@ -25,6 +28,7 @@ class Medicine{
 
   factory Medicine.fromMap(Map<String, dynamic> map){
     return Medicine(
+      id: map['id'],
       nome: map['nome'],
       observacao: map['observacao'],
       quantidade:  map['quantidade'],

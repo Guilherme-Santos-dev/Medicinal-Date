@@ -21,10 +21,11 @@ class ItemList extends StatelessWidget {
               Icons.access_time_outlined
             ),        
             SizedBox(
-              width: 16,
+              width: 20,
+              
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(medicine.nome),
                 Text(medicine.horario),

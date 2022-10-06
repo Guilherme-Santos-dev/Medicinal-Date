@@ -16,4 +16,9 @@ class MedicineRepository{
     final elements = await db.query(_table);
     return elements.map((mapa) => Medicine.fromMap(mapa)).toList();
   }
+
+  static Future<int> updateMedicine(Medicine medicine) async {
+    final db = await DAO.getConnection();
+    return await db.update(_table, medicine.toMap(), where: "id=?", whereArgs: [medicine.id],);
+  }
 }
