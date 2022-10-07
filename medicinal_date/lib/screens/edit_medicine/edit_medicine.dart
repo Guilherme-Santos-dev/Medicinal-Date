@@ -7,28 +7,30 @@ import 'package:medicinal_date/repository/medicine_repository.dart';
 
 class editMedicine extends StatefulWidget {
   final Medicine medicine;
-  const editMedicine({super.key,
-  required this.medicine});
+  const editMedicine({super.key, required this.medicine});
 
   @override
-  State<editMedicine> createState() => _addContactState();
+  State<editMedicine> createState() => _editMedicineState();
 }
 
-class _addContactState extends State<editMedicine> {
+class _editMedicineState extends State<editMedicine> {
   final _formKey = GlobalKey<FormState>();
 
-  late final nomeController = TextEditingController;
-  late final observacaoController = TextEditingController;
-  late final quantidadeController = TextEditingController;
-  late final horarioController = MaskedTextController;
+  late TextEditingController nomeController;
+  late TextEditingController observacaoController;
+  late TextEditingController quantidadeController;
+  late MaskedTextController horarioController;
 
   @override
   void initState() {
-  nomeController = TextEditingController(text: widget.medicine.nome);
-  observacaoController = TextEditingController(text: widget.medicine.observacao);
-  quantidadeController = TextEditingController(text: widget.medicine.quantidade);
-  horarioController = MaskedTextController(mask: "00:00", text: widget.medicine.horario);
-    
+    nomeController = TextEditingController(text: widget.medicine.nome);
+    observacaoController =
+        TextEditingController(text: widget.medicine.observacao);
+    quantidadeController =
+        TextEditingController(text: widget.medicine.quantidade);
+    horarioController =
+        MaskedTextController(mask: "00:00", text: widget.medicine.horario);
+
     super.initState();
   }
 
@@ -46,9 +48,9 @@ class _addContactState extends State<editMedicine> {
               nome: nomeController.text,
               observacao: observacaoController.text,
               quantidade: quantidadeController.text,
-              horario: horarioController.text,             
+              horario: horarioController.text,
             );
-            final result = await MedicineRepository.updateMedicine(medicine.toMap());
+            final result = await MedicineRepository.updateMedicine(medicine);
             String message;
             if (result != 0) {
               message = "Agenda alterada";
@@ -57,7 +59,6 @@ class _addContactState extends State<editMedicine> {
             }
             final snack = SnackBar(content: Text(message));
             ScaffoldMessenger.of(context).showSnackBar(snack);
-
           }
         },
         child: const Icon(
@@ -81,8 +82,8 @@ class _addContactState extends State<editMedicine> {
               TextFormField(
                 controller: nomeController,
                 validator: (text) => (text == null || text.length < 4)
-                ? "Nome de medicamento muito pequeno."
-                : null,
+                    ? "Nome de medicamento muito pequeno."
+                    : null,
                 keyboardType: TextInputType.name,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -94,9 +95,9 @@ class _addContactState extends State<editMedicine> {
               ),
               TextFormField(
                 controller: observacaoController,
-                validator: (text) => (text == null || text.length == 0 )
-                ? "Adicione uma obscervação"
-                : null,
+                validator: (text) => (text == null || text.length == 0)
+                    ? "Adicione uma obscervação"
+                    : null,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -108,8 +109,8 @@ class _addContactState extends State<editMedicine> {
               ),
               TextFormField(
                 validator: (text) => (text == null || text.length < 1)
-                ? "adicione pelo menos 1 unidade"
-                : null,
+                    ? "adicione pelo menos 1 unidade"
+                    : null,
                 controller: quantidadeController,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
@@ -123,8 +124,8 @@ class _addContactState extends State<editMedicine> {
               TextFormField(
                 controller: horarioController,
                 validator: (text) => (text == null || text.length != 5)
-                ? "Horario invalido"
-                : null,
+                    ? "Horario invalido"
+                    : null,
                 keyboardType: TextInputType.datetime,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),

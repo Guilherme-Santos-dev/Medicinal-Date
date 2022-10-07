@@ -33,9 +33,10 @@ class _addContactState extends State<addMedicine> {
               nome: nomeController.text,
               observacao: observacaoController.text,
               quantidade: quantidadeController.text,
-              horario: horarioController.text,             
+              horario: horarioController.text,
             );
-            final result = await MedicineRepository.insertMedicine(medicine.toMap());
+            final result =
+                await MedicineRepository.insertMedicine(medicine.toMap());
             String message;
             if (result != 0) {
               message = "Agenda criada";
@@ -44,7 +45,6 @@ class _addContactState extends State<addMedicine> {
             }
             final snack = SnackBar(content: Text(message));
             ScaffoldMessenger.of(context).showSnackBar(snack);
-
           }
         },
         child: const Icon(
@@ -68,8 +68,8 @@ class _addContactState extends State<addMedicine> {
               TextFormField(
                 controller: nomeController,
                 validator: (text) => (text == null || text.length < 4)
-                ? "Nome de medicamento muito pequeno."
-                : null,
+                    ? "Nome de medicamento muito pequeno."
+                    : null,
                 keyboardType: TextInputType.name,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -81,9 +81,9 @@ class _addContactState extends State<addMedicine> {
               ),
               TextFormField(
                 controller: observacaoController,
-                validator: (text) => (text == null || text.length == 0 )
-                ? "Adicione uma obscervação"
-                : null,
+                validator: (text) => (text == null || text.length == 0)
+                    ? "Adicione uma obscervação"
+                    : null,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -95,8 +95,8 @@ class _addContactState extends State<addMedicine> {
               ),
               TextFormField(
                 validator: (text) => (text == null || text.length < 1)
-                ? "adicione pelo menos 1 unidade"
-                : null,
+                    ? "adicione pelo menos 1 unidade"
+                    : null,
                 controller: quantidadeController,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
@@ -108,10 +108,20 @@ class _addContactState extends State<addMedicine> {
                 height: 15,
               ),
               TextFormField(
+                readOnly: true,
+                onTap: () async {
+                  var hora = await showTimePicker(
+                    initialTime: TimeOfDay.now(),
+                    context: context,
+                  );
+
+                  if (hora != null) {
+                    setState(() {
+                      horarioController.text = "${hora.hour}:${hora.minute}";
+                    });
+                  }
+                },
                 controller: horarioController,
-                validator: (text) => (text == null || text.length != 5)
-                ? "Horario invalido"
-                : null,
                 keyboardType: TextInputType.datetime,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),

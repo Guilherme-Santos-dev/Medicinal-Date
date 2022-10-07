@@ -8,7 +8,7 @@ void main() {
       title: "Agenda de remedios",
       initialRoute: "/",
       routes: {
-        "/": (context) => const Home(),
+        "/": (context) => Home(),
         "/add": (context) => const addMedicine(),
       },
       debugShowCheckedModeBanner: false,
@@ -20,13 +20,17 @@ void main() {
       ),
     ),
   );
-  body: new Stack(
-      children: <Widget>[
-        new Container(
-          decoration: new BoxDecoration(
-            image: new DecorationImage(image: new AssetImage("assets/foto background"), fit: BoxFit.cover,),
+  body:
+  new Stack(
+    children: <Widget>[
+      new Container(
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new AssetImage("assets/foto background"),
+            fit: BoxFit.cover,
           ),
         ),
-      ],
-    );
+      ),
+    ],
+  );
 }

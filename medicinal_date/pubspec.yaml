@@ -37,7 +37,16 @@ dependencies:
   sqflite: ^2.0.3+1
   flutter_masked_text2: ^0.9.1
   flutter_launcher_icons: ^0.10.0
+  flutter_native_splash: ^2.2.10+1
 
+# flutter_native_splash-development.yaml
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/app_icon.png
+  branding: assets/branding-development.png
+  color_dark: "#121212"
+  image_dark: assets/app_icon.png
+  branding_dark: assets/branding-development.png
 
 flutter_icons:
   image_path: "assets/app_icon.png"
