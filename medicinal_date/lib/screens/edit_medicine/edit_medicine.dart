@@ -122,6 +122,19 @@ class _editMedicineState extends State<editMedicine> {
                 height: 15,
               ),
               TextFormField(
+                readOnly: true,
+                onTap: () async {
+                  var hora = await showTimePicker(
+                    initialTime: TimeOfDay.now(),
+                    context: context,
+                  );
+
+                  if (hora != null) {
+                    setState(() {
+                      horarioController.text = "${hora.hour}:${hora.minute}";
+                    });
+                  }
+                },
                 controller: horarioController,
                 validator: (text) => (text == null || text.length != 5)
                     ? "Horario invalido"
