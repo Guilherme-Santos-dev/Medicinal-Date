@@ -26,7 +26,7 @@ void main() {
       new Container(
         decoration: new BoxDecoration(
           image: new DecorationImage(
-            image: new AssetImage("assets/foto background"),
+            image: new AssetImage("assets/fundo_app.png"),
             fit: BoxFit.cover,
           ),
         ),

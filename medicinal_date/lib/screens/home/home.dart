@@ -29,6 +29,8 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text("Medical date"),
       ),
+      
+
       body: FutureBuilder(
         future: MedicineRepository.findALL(),
         builder: (context, snapshot) {
