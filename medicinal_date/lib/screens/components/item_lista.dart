@@ -12,39 +12,40 @@ class ItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        
-        Row(
-          children: [
-            Icon(Icons.access_time_outlined),
-            SizedBox(
-              width: 20,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(medicine.nome),
-                Text(medicine.horario),
-              ],
-            ),
-          ],
-        ),
-        IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => editMedicine(medicine: medicine),
+    return Card(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.access_time_outlined),
+              SizedBox(
+                width: 20,
               ),
-            );
-          },
-          icon: Icon(
-            Icons.edit,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(medicine.nome),
+                  Text(medicine.horario),
+                ],
+              ),
+            ],
           ),
-        ),
-      ],
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => editMedicine(medicine: medicine),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.edit,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

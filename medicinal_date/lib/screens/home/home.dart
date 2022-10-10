@@ -29,9 +29,15 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text("Medical date"),
       ),
-      
-
-      body: FutureBuilder(
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: Image.asset(
+              "assets/fundo_app.png",
+              width: 300,
+            ),
+          ),
+      FutureBuilder(
         future: MedicineRepository.findALL(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.none ||
@@ -67,6 +73,8 @@ class _HomeState extends State<Home> {
             );
           }
         },
+      ),
+  ],
       ),
     );
   }
